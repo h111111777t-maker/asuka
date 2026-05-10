@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>母亲节快乐</title>
+<style>
+/* ==================== 基础重置 & 背景 ==================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 100vw; height: 100vh;
+  overflow: hidden;
+  font-family: 'Georgia', 'Noto Serif SC', 'STSong', 'SimSun', 'KaiTi', serif;
+  background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 15%, #FFD1DC 30%, #FFE4E1 50%, #FFC0CB 70%, #FFB6C1 85%, #FFA0B0 100%);
+  background-size: 400% 400%;
+  animation: bgShift 12s ease-in-out infinite;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+
+@keyframes bgShift {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+/* ==================== 背景装饰系统 ==================== */
+#bg-decorations {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; z-index: 0;
+}
+
+.bg-deco {
+  position: absolute;
+  font-size: 28px;
+  animation: floatDeco var(--dur) ease-in-out infinite;
+  animation-delay: var(--delay);
+  opacity: 0.55;
+  filter: drop-shadow(0 2px 4px rgba(255, 105, 180, 0.3));
+}
+
+@keyframes floatDeco {
+  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.4; }
+  25% { transform: translateY(-45px) translateX(15px) rotate(10deg); opacity: 0.7; }
+  50% { transform: translateY(-80px) translateX(-10px) rotate(-5deg); opacity: 0.55; }
+  75% { transform: translateY(-35px) translateX(-20px) rotate(8deg); opacity: 0.65; }
+}
+
+/* ==================== 主容器 ==================== */
+#main-container {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  height: 100vh; padding-bottom: 160px;
+}
+
+/* ==================== 标题 ==================== */
+#title {
+  font-size: clamp(42px, 8vw, 88px);
+  font-weight: bold;
+  color: #E83A5F;
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+  text-shadow:
+    0 0 20px rgba(255, 105, 180, 0.4),
+    0 0 40px rgba(255, 182, 193, 0.3),
+    1px 1px 2px rgba(255, 255, 255, 0.7),
+    -1px -1px 2px rgba(232, 58, 95, 0.5),
+    0 3px 6px rgba(232, 58, 95, 0.25);
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(255,105,180,0.4), 0 0 40px rgba(255,182,193,0.3), 1px 1px 2px rgba(255,255,255,0.7), -1px -1px 2px rgba(232,58,95,0.5), 0 3px 6px rgba(232,58,95,0.25); }
+  50% { text-shadow: 0 0 35px rgba(255,105,180,0.7), 0 0 65px rgba(255,182,193,0.5), 0 0 80px rgba(255,105,180,0.3), 1px 1px 2px rgba(255,255,255,0.9), -1px -1px 2px rgba(232,58,95,0.6), 0 4px 8px rgba(232,58,95,0.35); }
+}
+
+.subtitle {
+  font-size: clamp(16px, 2.5vw, 24px);
+  color: #D45D79;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(255,182,193,0.3);
+  letter-spacing: 0.15em;
+}
+
+/* ==================== 按钮区域 ==================== */
+#button-area {
+  position: relative;
+  display: flex; align-items: center;
+  gap: 16px; margin-bottom: 20px;
+}
+
+#blessing-btn {
+  padding: 16px 42px;
+  font-size: clamp(18px, 3vw, 26px);
+  font-family: inherit;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(135deg, #FF6B8A, #E83A5F);
+  border: none; border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 24px rgba(232, 58, 95, 0.4), 0 0 0 4px rgba(255, 182, 193, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.05em;
+  position: relative; overflow: hidden;
+}
+
+#blessing-btn::after {
+  content: '';
+  position: absolute; top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.3) 45%, transparent 50%);
+  animation: btnShine 3s ease-in-out infinite;
+}
+
+@keyframes btnShine {
+  0%, 100% { transform: translateX(-100%) translateY(-100%); }
+  50% { transform: translateX(100%) translateY(100%); }
+}
+
+#blessing-btn:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 10px 32px rgba(232, 58, 95, 0.55), 0 0 0 6px rgba(255, 182, 193, 0.45);
+}
+
+#blessing-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 3px 12px rgba(232, 58, 95, 0.35), 0 0 0 4px rgba(255, 182, 193, 0.3);
+}
+
+.tooltip {
+  position: relative;
+  color: #E83A5F;
+  font-size: 18px;
+  font-weight: bold;
+  animation: tooltipBob 1.2s ease-in-out infinite;
+  cursor: default;
+  text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+}
+
+.tooltip::after {
+  content: '\21A9';
+  font-size: 22px;
+  margin-left: 4px;
+  display: inline-block;
+  animation: arrowBounce 0.8s ease-in-out infinite;
+}
+
+@keyframes tooltipBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+
+/* ==================== 祝福语弹窗 ==================== */
+#blessing-popup {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 36px 44px;
+  max-width: 560px; width: 90%;
+  text-align: center;
+  z-index: 100;
+  box-shadow: 0 20px 60px rgba(232, 58, 95, 0.3), 0 0 0 3px rgba(255, 182, 193, 0.5);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+#blessing-popup.show {
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+#blessing-popup .popup-text {
+  font-size: clamp(20px, 3.5vw, 30px);
+  color: #D45D79;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+#blessing-popup .popup-close {
+  padding: 10px 30px;
+  font-size: 16px; font-family: inherit;
+  color: #fff;
+  background: linear-gradient(135deg, #FFB6C1, #E83A5F);
+  border: none; border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#blessing-popup .popup-close:hover { transform: scale(1.06); }
+
+#overlay {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.25);
+  z-index: 99; opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+#overlay.show { opacity: 1; pointer-events: auto; }
+
+/* ==================== 动物容器 ==================== */
+#animals-stage {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.animal {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.animal:hover { filter: brightness(1.15) drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
+
+.pixel {
+  position: absolute;
+  width: 6px; height: 6px;
+  border-radius: 0.5px;
+}
+
+/* 待机跳动 */
+.animal.idle .pixel-body {
+  animation: animalIdle 0.8s ease-in-out infinite var(--bob-delay, 0s);
+}
+
+@keyframes animalIdle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* 行走晃动 */
+.animal.walking .pixel-body {
+  animation: walkBob 0.45s ease-in-out infinite;
+}
+
+@keyframes walkBob {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-3px); }
+  75% { transform: translateY(2px); }
+}
+
+/* 朝向翻转 */
+.animal.facing-left .pixel-body { transform: scaleX(-1); }
+.animal.facing-left.walking .pixel-body { animation: walkBobLeft 0.45s ease-in-out infinite; }
+
+@keyframes walkBobLeft {
+  0%, 100% { transform: scaleX(-1) translateY(0); }
+  25% { transform: scaleX(-1) translateY(-3px); }
+  75% { transform: scaleX(-1) translateY(2px); }
+}
+
+/* 影子 */
+.animal-shadow {
+  position: absolute; bottom: -6px; left: 50%;
+  transform: translateX(-50%);
+  width: 70%; height: 6px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 50%;
+  animation: shadowPulse 0.8s ease-in-out infinite var(--bob-delay, 0s);
+}
+
+@keyframes shadowPulse {
+  0%, 100% { transform: translateX(-50%) scale(0.85); opacity: 0.6; }
+  50% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+}
+
+.animal.walking .animal-shadow {
+  animation: shadowWalk 0.45s ease-in-out infinite;
+}
+
+@keyframes shadowWalk {
+  0%, 100% { transform: translateX(-50%) scale(0.7); opacity: 0.5; }
+  25% { transform: translateX(-50%) scale(1); opacity: 0.7; }
+  75% { transform: translateX(-50%) scale(0.85); opacity: 0.6; }
+}
+
+/* ==================== 对话气泡 ==================== */
+.speech-bubble {
+  position: absolute; bottom: 110%;
+  left: 50%; transform: translateX(-50%);
+  background: #fff;
+  border-radius: 16px;
+  padding: 10px 16px;
+  font-size: 14px; color: #D45D79;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  font-family: 'Georgia', 'Noto Serif SC', 'KaiTi', serif;
+  font-weight: bold;
+  margin-left: 0;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute; top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: #fff;
+}
+
+.speech-bubble.show { opacity: 1; }
+
+/* ==================== 烟花 ==================== */
+.firework-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 200;
+  border-radius: 50%;
+  animation: fireworkBurst 1.2s ease-out forwards;
+}
+
+@keyframes fireworkBurst {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--fx), var(--fy)) scale(0); opacity: 0; }
+}
+
+/* ==================== 响应式 ==================== */
+@media (max-width: 600px) {
+  .pixel { width: 5px; height: 5px; }
+  #blessing-popup { padding: 24px 20px; }
+  .tooltip { font-size: 14px; }
+  #main-container { padding-bottom: 80px; }
+}
+</style>
+</head>
+<body>
+
+<div id="bg-decorations"></div>
+<div id="overlay" onclick="closeBlessing()"></div>
+
+<div id="blessing-popup">
+  <div class="popup-text" id="popup-text"></div>
+  <button class="popup-close" onclick="closeBlessing()">知 道 了</button>
+</div>
+
+<div id="main-container">
+  <div id="title">母亲节快乐</div>
+  <div class="subtitle">- 妈妈，您辛苦了 -</div>
+  <div id="button-area">
+    <button id="blessing-btn" onclick="showRandomBlessing()">点击获得祝福</button>
+    <span class="tooltip">点我点我～</span>
+  </div>
+</div>
+
+<div id="animals-stage"></div>
+
+<script>
+// ==================== 全局配置对象 ====================
+window.MothersDay = {
+  blessings: [],
+  animals: [],
+  theme: 'pink',
+  settings: {
+    animalSpeed: 1,
+    bgDensity: 1,
+    soundEnabled: false
+  }
+};
+
+// ==================== 祝福语系统 ====================
+var BASE_BLESSINGS = [
+  '妈妈，谢谢您把我带到这个世界。母亲节快乐！',
+  '您的爱如春风般温暖，谢谢您一直以来的包容和关怀。',
+  '世界上最美的声音，是您喊我名字的那一刻。妈妈节日快乐！',
+  '岁月偷走了您的青丝，却偷不走您在我心中最美的模样。',
+  '妈妈，您是我生命中最温柔的光，愿您永远健康幸福。',
+  '千言万语汇成一句：妈妈我爱您，您辛苦了一辈子。',
+  '您的手总在忙碌，您的笑容总在温暖我。母亲节快乐！',
+  '小时候您牵我的手，长大了换我牵着您走。',
+  '世上只有妈妈好，您的爱无人能替代。祝您节日快乐！',
+  '妈妈，愿时光温柔待您，就像您一直温柔待我一样。',
+  '您把最好的年华给了我，现在换我来给您最好的陪伴。',
+  '没有您就没有今天的我，谢谢您，我最亲爱的妈妈。',
+  '您的每一个拥抱都是我力量的源泉。母亲节快乐！',
+  '妈妈，您是我心中永远的女神，愿您永远年轻美丽。',
+  '走得再远也走不出您的牵挂，飞得再高也飞不出您的目光。'
+];
+
+function getRandomBlessing() {
+  var pool = window.MothersDay.blessings;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function showRandomBlessing() {
+  var text = getRandomBlessing();
+  document.getElementById('popup-text').textContent = text;
+  document.getElementById('blessing-popup').classList.add('show');
+  document.getElementById('overlay').classList.add('show');
+}
+
+function closeBlessing() {
+  document.getElementById('blessing-popup').classList.remove('show');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+window.addBlessings = function(arr) {
+  if (!Array.isArray(arr)) return;
+  window.MothersDay.blessings.push.apply(window.MothersDay.blessings, arr);
+};
+
+// ==================== 背景系统 ====================
+var DECO_EMOJIS = ['❤️', '🌸', '🌺', '🌷', '💕', '🌼', '💗', '🌻', '💝', '💐', '🌹', '🎀', '✨'];
+
+function createFloatingDecorations() {
+  var container = document.getElementById('bg-decorations');
+  var density = window.MothersDay.settings.bgDensity;
+  var count = Math.floor(48 * density);
+  container.innerHTML = '';
+  for (var i = 0; i < count; i++) {
+    var span = document.createElement('span');
+    span.className = 'bg-deco';
+    span.textContent = DECO_EMOJIS[Math.floor(Math.random() * DECO_EMOJIS.length)];
+    span.style.left = Math.random() * 100 + '%';
+    span.style.top = Math.random() * 100 + '%';
+    span.style.fontSize = (18 + Math.random() * 30 * density) + 'px';
+    span.style.setProperty('--dur', (4 + Math.random() * 8) + 's');
+    span.style.setProperty('--delay', Math.random() * -10 + 's');
+    container.appendChild(span);
+  }
+}
+
+// ==================== 动物系统 ====================
+// 像素动物数据 - 每行 width 个字符, grid 从上到下
+var ANIMAL_TYPES = {
+  cat: {
+    name: '猫', width: 8,
+    colors: { O: '#FF8C00', W: '#FFF5E6', K: '#1a1a1a', P: '#FFB6C1' },
+    grid: [
+      '..O..O..','.OOOOOO.','OWWWWWWO','OWK..KWO',
+      'OWWPPWWO','.OWWWWO.','..OOOO..','.O....O.'
+    ]
+  },
+  dog: {
+    name: '狗', width: 8,
+    colors: { D: '#8B4513', B: '#C4731D', M: '#F5DEB3', K: '#1a1a1a' },
+    grid: [
+      '.DD..DD.','BBBBBBBB','BMK..KMB','BMMMMMMB',
+      'BBBBBBBB','.BBBBBB.','..BBBB..','.B....B.'
+    ]
+  },
+  rabbit: {
+    name: '兔子', width: 8,
+    colors: { W: '#FFFFFF', P: '#FFB6C1', K: '#1a1a1a', G: '#E8E8E8' },
+    grid: [
+      '.PW..WP.','.PW..WP.','WWWWWWWW','WWK..KWW',
+      'WWWPPWWW','.WWWWWW.','..WWWW..','.W....W.'
+    ]
+  },
+  chick: {
+    name: '小鸡', width: 8,
+    colors: { Y: '#FFD700', O: '#FF8C00', K: '#1a1a1a' },
+    grid: [
+      '..YYYY..','.YYYYYY.','YYK..KYY','YYYOOYYY',
+      'YYYYYYYY','.YYYYYY.','..YYYY..','.O....O.'
+    ]
+  },
+  bear: {
+    name: '小熊', width: 8,
+    colors: { B: '#8B4513', C: '#D2B48C', K: '#1a1a1a' },
+    grid: [
+      '.BB..BB.','BBBBBBBB','BCK..KCB','BCCCCCCB',
+      'BBBBBBBB','.BBBBBB.','..BBBB..','.B....B.'
+    ]
+  },
+  duck: {
+    name: '小鸭', width: 8,
+    colors: { Y: '#FFD700', L: '#FFF176', O: '#FF8C00', K: '#1a1a1a' },
+    grid: [
+      '..YYYY..','.YYYYYY.','YYK..KYY','YYYYYYYY',
+      'YYYOOYYY','.YYYYYY.','..LLLL..','.O....O.'
+    ]
+  },
+  pig: {
+    name: '小猪', width: 8,
+    colors: { P: '#FFB6C1', D: '#FF8FAA', K: '#1a1a1a', N: '#FF69B4' },
+    grid: [
+      '.PD..DP.','PPPPPPPP','PK....KP','PPPNNPPP',
+      'PPPPPPPP','.PPPPPP.','..PPPP..','.P....P.'
+    ]
+  },
+  fox: {
+    name: '小狐狸', width: 8,
+    colors: { O: '#FF5722', W: '#FFF5E6', K: '#1a1a1a' },
+    grid: [
+      '.O.O..O.','OOOO.OOO','OWWWWWWO','OWK..KWO',
+      'OWW..WWO','.OWWWWO.','..OOOO..','.O....O.'
+    ]
+  }
+};
+
+// 动物类 - 全屏2D游荡
+function PixelAnimal(type, x, y) {
+  var data = ANIMAL_TYPES[type] || ANIMAL_TYPES.cat;
+  this.type = type;
+  this.data = data;
+  this.name = data.name;
+
+  var pixelSize = window.innerWidth <= 600 ? 5 : 6;
+  this.pixelSize = pixelSize;
+  this.width = data.width * pixelSize;
+  this.height = data.grid.length * pixelSize;
+
+  // 全屏随机初始位置（避开边缘）
+  var vw = window.innerWidth;
+  var vh = window.innerHeight;
+  this.x = (x !== undefined && x !== null) ? x : 20 + Math.random() * (vw - this.width - 40);
+  this.y = (y !== undefined && y !== null) ? y : 100 + Math.random() * (vh - this.height - 140);
+
+  // 随机方向 2D 速度矢量，每只动物速度略有不同
+  var angle = Math.random() * Math.PI * 2;
+  this.speed = 0.8 + Math.random() * 2.0;
+  this.vx = Math.cos(angle) * this.speed;
+  this.vy = Math.sin(angle) * this.speed;
+  this.walking = true;
+  this.speaking = false;
+  this.speechTimer = null;
+
+  // 创建 DOM
+  this.el = document.createElement('div');
+  this.el.className = 'animal walking';
+  if (this.vx < 0) this.el.classList.add('facing-left');
+  this.el.style.left = this.x + 'px';
+  this.el.style.top = this.y + 'px';
+  this.el.style.width = this.width + 'px';
+  this.el.style.height = this.height + 'px';
+  this.el.setAttribute('data-animal', type);
+
+  // 像素体
+  this.bodyEl = document.createElement('div');
+  this.bodyEl.className = 'pixel-body';
+  this.bodyEl.style.position = 'relative';
+  this.bodyEl.style.width = this.width + 'px';
+  this.bodyEl.style.height = this.height + 'px';
+
+  this.pixelEls = [];
+  for (var row = 0; row < data.grid.length; row++) {
+    for (var col = 0; col < data.width; col++) {
+      var ch = data.grid[row][col];
+      if (ch === '.') continue;
+      var color = data.colors[ch] || '#000';
+      var pixel = document.createElement('div');
+      pixel.className = 'pixel';
+      pixel.style.left = (col * pixelSize) + 'px';
+      pixel.style.top = (row * pixelSize) + 'px';
+      pixel.style.backgroundColor = color;
+      this.bodyEl.appendChild(pixel);
+      this.pixelEls.push(pixel);
+    }
+  }
+
+  // 影子
+  this.shadowEl = document.createElement('div');
+  this.shadowEl.className = 'animal-shadow';
+  this.el.appendChild(this.bodyEl);
+  this.el.appendChild(this.shadowEl);
+
+  // 对话气泡
+  this.bubble = document.createElement('div');
+  this.bubble.className = 'speech-bubble';
+  this.bubble.style.left = (this.width / 2) + 'px';
+  this.bubble.style.transform = 'translateX(-50%)';
+
+  var self = this;
+  this.el.addEventListener('click', function(e) {
+    e.stopPropagation();
+    self.onClick();
+  });
+
+  this.el.appendChild(this.bubble);
+  document.getElementById('animals-stage').appendChild(this.el);
+}
+
+PixelAnimal.prototype.onClick = function() {
+  if (this.speaking) return;
+  this.speaking = true;
+  this.pauseWalking();
+
+  var pool = window.MothersDay.blessings;
+  var text = pool[Math.floor(Math.random() * pool.length)];
+  var shortText = text.length > 28 ? text.substring(0, 28) + '...' : text;
+  this.bubble.textContent = '💬 ' + shortText;
+  this.bubble.classList.add('show');
+  this.clampBubble();
+
+  var self = this;
+  clearTimeout(this.speechTimer);
+  this.speechTimer = setTimeout(function() {
+    self.bubble.classList.remove('show');
+    self.speaking = false;
+    self.resumeWalking();
+  }, 2500);
+};
+
+PixelAnimal.prototype.pauseWalking = function() {
+  this.walking = false;
+  this.el.classList.remove('walking', 'facing-left');
+  this.el.classList.add('idle');
+};
+
+PixelAnimal.prototype.resumeWalking = function() {
+  this.walking = true;
+  this.el.classList.remove('idle');
+  this.el.classList.add('walking');
+  if (this.vx < 0) this.el.classList.add('facing-left');
+};
+
+PixelAnimal.prototype.speak = function(text) {
+  if (this.speaking) return;
+  this.speaking = true;
+  this.pauseWalking();
+  var shortText = text.length > 30 ? text.substring(0, 30) + '...' : text;
+  this.bubble.textContent = '💬 ' + shortText;
+  this.bubble.classList.add('show');
+  this.clampBubble();
+  var self = this;
+  clearTimeout(this.speechTimer);
+  this.speechTimer = setTimeout(function() {
+    self.bubble.classList.remove('show');
+    self.speaking = false;
+    self.resumeWalking();
+  }, 2500);
+};
+
+PixelAnimal.prototype.clampBubble = function() {
+  var bubble = this.bubble;
+  var bubbleRect = bubble.getBoundingClientRect();
+  var vw = window.innerWidth;
+  var animalRect = this.el.getBoundingClientRect();
+
+  if (bubble.style.transform !== 'none') {
+    bubble.style.left = (bubbleRect.left - animalRect.left) + 'px';
+    bubble.style.transform = 'none';
+  }
+
+  var leftPx = parseFloat(bubble.style.left);
+  if (bubbleRect.left < 8) {
+    leftPx += (8 - bubbleRect.left);
+    bubble.style.left = leftPx + 'px';
+  }
+  if (bubbleRect.right > vw - 8) {
+    leftPx -= (bubbleRect.right - vw + 8);
+    bubble.style.left = leftPx + 'px';
+  }
+};
+
+PixelAnimal.prototype.update = function() {
+  if (!this.walking) return;
+
+  var speedMul = window.MothersDay.settings.animalSpeed;
+  var vw = window.innerWidth;
+  var vh = window.innerHeight;
+
+  // 2D 移动
+  this.x += this.vx * speedMul;
+  this.y += this.vy * speedMul;
+
+  // 四边反弹
+  if (this.x <= 0) { this.x = 0; this.vx = Math.abs(this.vx); }
+  if (this.x + this.width >= vw) { this.x = vw - this.width; this.vx = -Math.abs(this.vx); }
+  if (this.y <= 0) { this.y = 0; this.vy = Math.abs(this.vy); }
+  if (this.y + this.height >= vh) { this.y = vh - this.height; this.vy = -Math.abs(this.vy); }
+
+  // 更新 DOM
+  this.el.style.left = this.x + 'px';
+  this.el.style.top = this.y + 'px';
+
+  // 朝向基于水平速度
+  this.el.classList.remove('facing-left', 'idle');
+  this.el.classList.add('walking');
+  if (this.vx < 0) this.el.classList.add('facing-left');
+};
+
+PixelAnimal.prototype.setPosition = function(x, y) {
+  this.x = x;
+  this.y = y;
+  this.el.style.left = x + 'px';
+  this.el.style.top = y + 'px';
+};
+
+PixelAnimal.prototype.remove = function() {
+  clearTimeout(this.speechTimer);
+  this.el.remove();
+};
+
+// 动物动画循环
+var animalAnimId = null;
+function animalLoop() {
+  var animals = window.MothersDay.animals;
+  for (var i = 0; i < animals.length; i++) {
+    animals[i].update();
+  }
+  animalAnimId = requestAnimationFrame(animalLoop);
+}
+
+// 扩展接口：添加动物
+window.addAnimal = function(type, x, y) {
+  var animal = new PixelAnimal(type, x, y);
+  window.MothersDay.animals.push(animal);
+  return animal;
+};
+
+// 扩展接口：让动物说话
+window.makeAnimalSpeak = function(index, text) {
+  var animals = window.MothersDay.animals;
+  if (index >= 0 && index < animals.length) {
+    animals[index].speak(text);
+  }
+};
+
+// ==================== 主题系统 ====================
+var THEME_CONFIG = {
+  pink: {
+    bg: 'linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 15%, #FFD1DC 30%, #FFE4E1 50%, #FFC0CB 70%, #FFB6C1 85%, #FFA0B0 100%)',
+    titleColor: '#E83A5F',
+    decoEmojis: ['❤️', '🌸', '🌺', '🌷', '💕', '🌼', '💗', '💐', '🌹', '🎀', '✨']
+  },
+  purple: {
+    bg: 'linear-gradient(135deg, #D8BFD8 0%, #E6E6FA 20%, #DDA0DD 50%, #DA70D6 70%, #BA55D3 100%)',
+    titleColor: '#8B008B',
+    decoEmojis: ['💜', '🦄', '🌸', '🌷', '💐', '✨', '🔮', '🎀']
+  },
+  yellow: {
+    bg: 'linear-gradient(135deg, #FFF8DC 0%, #FFEFD5 20%, #FFE4B5 50%, #FFD700 70%, #FFA500 100%)',
+    titleColor: '#DAA520',
+    decoEmojis: ['💛', '🌻', '🌼', '⭐', '🌟', '✨', '🎀', '💐']
+  },
+  rainbow: {
+    bg: 'linear-gradient(135deg, #FFB6C1 0%, #FFD700 25%, #98FB98 50%, #87CEEB 75%, #DDA0DD 100%)',
+    titleColor: '#FF1493',
+    decoEmojis: ['🌈', '❤️', '💛', '💚', '💙', '💜', '🌸', '🌺', '🌻', '✨']
+  }
+};
+
+window.setTheme = function(theme) {
+  var config = THEME_CONFIG[theme];
+  if (!config) return;
+  window.MothersDay.theme = theme;
+  document.body.style.background = config.bg;
+  document.getElementById('title').style.color = config.titleColor;
+  DECO_EMOJIS.length = 0;
+  DECO_EMOJIS.push.apply(DECO_EMOJIS, config.decoEmojis);
+  createFloatingDecorations();
+};
+
+// ==================== 烟花系统 ====================
+window.fireFireworks = function() {
+  var colors = ['#FF6B8A', '#FFD700', '#FF69B4', '#FF8C00', '#FF1493', '#00CED1', '#FFB6C1', '#9370DB'];
+  var cx = window.innerWidth / 2;
+  var cy = window.innerHeight / 2;
+
+  for (var burst = 0; burst < 3; burst++) {
+    (function(b) {
+      setTimeout(function() {
+        var bx = cx + (Math.random() - 0.5) * 400;
+        var by = cy + (Math.random() - 0.5) * 300;
+        for (var i = 0; i < 30; i++) {
+          var particle = document.createElement('div');
+          particle.className = 'firework-particle';
+          particle.style.left = bx + 'px';
+          particle.style.top = by + 'px';
+          particle.style.width = (3 + Math.random() * 6) + 'px';
+          particle.style.height = particle.style.width;
+          particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          var angle = Math.random() * Math.PI * 2;
+          var dist = 60 + Math.random() * 120;
+          particle.style.setProperty('--fx', Math.cos(angle) * dist + 'px');
+          particle.style.setProperty('--fy', Math.sin(angle) * dist + 'px');
+          document.body.appendChild(particle);
+          setTimeout(function() { particle.remove(); }, 1300);
+        }
+      }, b * 300);
+    })(burst);
+  }
+};
+
+// ==================== 初始化 ====================
+function init() {
+  window.MothersDay.blessings = BASE_BLESSINGS.slice();
+
+  createFloatingDecorations();
+
+  // 创建 10 只动物，包含所有 8 种类型，随机分布全屏
+  var allTypes = ['cat', 'dog', 'rabbit', 'chick', 'bear', 'duck', 'pig', 'fox', 'cat', 'rabbit'];
+  var vw = window.innerWidth;
+  var vh = window.innerHeight;
+
+  for (var i = 0; i < allTypes.length; i++) {
+    var rx = 20 + Math.random() * (vw - 68);
+    var ry = 100 + Math.random() * (vh - 188);
+    window.addAnimal(allTypes[i], rx, ry);
+  }
+
+  animalLoop();
+
+  window.addEventListener('resize', function() {
+    createFloatingDecorations();
+    var newVw = window.innerWidth;
+    var newVh = window.innerHeight;
+    window.MothersDay.animals.forEach(function(a) {
+      if (a.x + a.width > newVw) a.x = newVw - a.width - 5;
+      if (a.y + a.height > newVh) a.y = newVh - a.height - 5;
+    });
+  });
+
+  console.log('母亲节快乐！');
+  console.log('可用扩展接口:');
+  console.log('  window.addAnimal(type, x, y)   - 添加动物 (cat/dog/rabbit/chick/bear/duck/pig/fox)');
+  console.log('  window.addBlessings(array)     - 添加祝福语');
+  console.log('  window.fireFireworks()         - 烟花效果');
+  console.log('  window.setTheme(theme)         - 切换主题 pink|purple|yellow|rainbow');
+  console.log('  window.makeAnimalSpeak(idx, t) - 让动物说话');
+  console.log('  window.MothersDay              - 全局配置对象');
+}
+
+init();
+</script>
+</body>
+</html>
